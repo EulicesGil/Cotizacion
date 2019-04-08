@@ -1,22 +1,10 @@
-<wizard>
-    <wizard-step stepTitle="Title of step 1" [canExit]='true'>
-      Content of Step 1
-      <button type="button" nextStep>Next Step</button>
-    </wizard-step>
-    <wizard-step stepTitle="Title of step 2" awOptionalStep>
-      Content of Step 2
-      <button type="button" previousStep>Go to previous step</button>
-      <button type="button" nextStep>Go to next step</button>
-    </wizard-step>
-    <wizard-step stepTitle="Title of step 3">
-      Content of Step 3
-      <button type="button" previousStep>Previous Step</button>
-      <button type="button" (click)="finishFunction()">Finish</button>
-    </wizard-step>
-  </wizard>
-<div class="card">
-  <div class="card-body">
-    <form [formGroup]="angForm" novalidate class="form-inline">
+<button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+  {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
+</button>
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="frmAgregarACotizacion" novalidate class="form-inline">
+      <ng-template matStepLabel>Agragar a cotizacion</ng-template>
       <div class="form-group col-sm-12 col-md-6">
         <label class="col-ms-12 col-md-6 col-form-label">Seleccione tipo de producto</label>
         <select type="select" class="form-control" id="ddlTipoProducto" placeholder="Tipo de porducto"
@@ -26,39 +14,77 @@
           </option>
         </select>
         <div
-          *ngIf="angForm.controls['tipoProducto'].invalid && (angForm.controls['tipoProducto'].dirty || angForm.controls['tipoProducto'].touched)"
+          *ngIf="frmAgregarACotizacion.controls['tipoProducto'].invalid && (frmAgregarACotizacion.controls['tipoProducto'].dirty || frmAgregarACotizacion.controls['tipoProducto'].touched)"
           class="alert alert-danger">
-          <div *ngIf="angForm.controls['tipoProducto'].errors.required">
+          <div *ngIf="frmAgregarACotizacion.controls['tipoProducto'].errors.required">
             Seleccione el tipo de producto.
           </div>
         </div>
       </div>
       <div class="form-group col-sm-12 col-md-6">
-        <button (click)="getProductos()" type="button" [disabled]="angForm.pristine || angForm.invalid"
+        <button (click)="getProductos()" type="button" [disabled]="frmAgregarACotizacion.pristine || frmAgregarACotizacion.invalid"
           class="btn btn-primary">Consultar productos</button>
-      </div>      
-      <div class="form-group col-sm-12 col-md-12">
-        <br/>
       </div>
-      <div class="form-group col-sm-12 col-md-12" >
+      <div class="form-group col-sm-12 col-md-12">
+        <br />
+      </div>
+      <div class="form-group col-sm-12 col-md-12">
         <div class="row" *ngFor="let producto of productos; let i = index">
           <div class="col">
             <div class="text-center">
-              <img class="center" alt="" src="{{producto.urlImg}}" width="100px" height="100px" >
+              <img class="center" alt="" src="{{producto.urlImg}}" width="100px" height="100px">
             </div>
             <label>{{producto.nombre}}</label>
             <div class="form-group col-sm-12 col-md-6">
               <input type="number" class="form-control" placeholder="Cantidad">
             </div>
             <div class="form-group col-sm-12 col-md-6">
-              <input id="chkProducto_{{i}}" type="checkbox" class="form-control">   
-            </div>         
-          </div>          
-        </div>       
+              <input id="chkProducto_{{i}}" type="checkbox" class="form-control">
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="text-right col-sm-12 col-md-12">
-          <button class="btn btn-primary" (click)="confimarCotizacion()" type="submit">Agregar a cotizacion</button>
+      <div class="text-right col-sm-12 col-md-12">        
+        <button mat-button matStepperNext class="btn btn-primary" type="button">Agregar a cotizacion</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="frmConfirmarCotizacion">
+    <form [formGroup]="frmConfirmarCotizacion" class="form-inline">
+      <ng-template matStepLabel>Confirmar cotizacion</ng-template>
+      <div class="form-group col-md-6">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Producto</th>
+                <th scope="col">Descripcion</th>
+                <th scope="col">Cantidad</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let productoAFacturar of productosAFacturar; let i = index">
+                <td>{{i}}</td>
+                <td>{{productoAFacturar.nombre}}</td>
+                <td>{{productoAFacturar.descripcion}}</td>
+                <td>{{productoAFacturar.cantidad}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="form-group col-md-6">
+          <div class="form-group col-md-12">
+            <textarea class="form-control col-ms-12 col-md-12" id="txtObservaciones" formControlName="observaciones" #observaciones rows="3" placeholder="Observaciones"></textarea>
+          </div>
+          <div class="form-group col-md-12"><br /></div>
+          <div class="form-group col-md-12">
+            <label class="col-form-label col-ms-12 col-md-6" for="fechaVencimiento">Fecha vencimiento</label>
+            <input type="date" class="form-control col-ms-12 col-md-6" id="txtFechaVencimiento" data-type="datepicker" formControlName="fechaVencimiento" #vechaVencimiento placeholder="Fecha de vencimiento" />
+          </div>
+        </div>
+        <div class="col-md-12 text-right">
+            <button class="btn btn-primary" type="submit">Realizar cotizacion</button>
         </div>
     </form>
-  </div>
-</div>
+  </mat-step>
+</mat-horizontal-stepper>

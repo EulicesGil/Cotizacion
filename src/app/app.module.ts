@@ -2,6 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+import {MatStepperModule} from '@angular/material/stepper';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,7 +14,6 @@ import { CreateClientComponent } from './client/create/create.component';
 import { EditComponent } from './client/edit/edit.component';
 import { GetComponent } from './client/get/get.component';
 import { CreateCotizacionComponent } from './cotizacion/create/create.component';
-import { ConfirmarCotizacionComponent } from './cotizacion/confirmar/confirmar.component';
 
 import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 
@@ -26,12 +28,18 @@ import { CotizacionService } from './services/cotizacion/cotizacion.service';
     CreateClientComponent,
     EditComponent,
     GetComponent,
-    CreateCotizacionComponent,
-    ConfirmarCotizacionComponent
+    CreateCotizacionComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,ReactiveFormsModule,HttpClientModule,SlimLoadingBarModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    SlimLoadingBarModule,
+    MatStepperModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatCheckboxModule
   ],
   providers: [CotizacionService],
   bootstrap: [AppComponent]
