@@ -10,6 +10,7 @@ export default class Producto {
         public estado: String,
         public fechaRegistro: Date,
         public fechaModificacion: Date,
-        public urlImg: String
+        public urlImg: String,
+        public cantidad: Number
        ) { }
   }
