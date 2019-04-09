@@ -18,6 +18,7 @@ import { CreateCotizacionComponent } from './cotizacion/create/create.component'
 import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 
 import { CotizacionService } from './services/cotizacion/cotizacion.service';
+import { LoginService } from './services/login/login.service';
 
 
 @NgModule({
