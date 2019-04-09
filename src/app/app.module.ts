@@ -19,7 +19,7 @@ import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 
 import { CotizacionService } from './services/cotizacion/cotizacion.service';
 import { LoginService } from './services/login/login.service';
-import { ConsultarComponent } from './cotizacion/consultar/consultar.component';
+import { ConsultarOfertaComponent } from './oferta/consultar/consultar.component';
 
 
 @NgModule({
@@ -31,7 +31,7 @@ import { ConsultarComponent } from './cotizacion/consultar/consultar.component';
     EditComponent,
     GetComponent,
     CreateCotizacionComponent,
-    ConsultarComponent
+    ConsultarOfertaComponent
   ],
   imports: [
     BrowserModule,
