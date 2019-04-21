@@ -1,0 +1,36 @@
+<div>
+
+
+  <table class="table table-striped">
+    <thead class="thead-dark">
+     <tr>
+         <td>N°</td>
+         <td>Cotizacion</td>                    
+        <td>Producto</td>
+        <td>Cantidad</td> 
+        <td>Oferta</td>
+        <td>Observacion</td>
+        <td>Fecha vigencia</td>
+        <td></td>
+      
+    </tr>
+    
+    </thead>
+    <tbody>
+     
+        <tr *ngFor="let Cotizacion of Cotizaciones; let i = index">
+            <td>{{i}}</td>
+            <td>{{Cotizacion.cotizacionId}}</td>                   
+            <td>{{Cotizacion.cotizacionId}}</td>
+            <td>{{Cotizacion.cantidad}}</td>
+            <td><input type="text" id="cajaoferta_{{i}}"></td> 
+           <td><input type="text" id="cajaobservacion_{{i}}"></td> 
+           <td><input type="date" id="fechavigencia_{{i}}"></td> 
+           <td><button  (click)="setcrearoferta(Cotizacion.cotizacionId)">Notificar Oferta</button></td>
+          
+          </tr>  
+    </tbody>
+  </table>
+
+</div> 
+

@@ -1,0 +1,96 @@
+<form [formGroup]="modproducto" (ngSubmit)="onSubmit()">
+<div>
+  
+<table>
+<tr>
+<td><title>Control  de Productos</title></td>
+</tr>  
+<tr>
+ <label>Crear Producto</label>
+</tr>
+<tr>
+    <td>
+    <label>producto</label> 
+    </td>
+<td>
+ <input type="text" id="cajaproducto">   
+</td>    
+</tr>
+
+<tr>
+        <td>
+        <label>Tipo Producto</label> 
+        </td>
+    <td>
+     <input type="text" id="tipoproducto">   
+    </td>    
+</tr>
+
+<tr>
+        <td>
+        <label>Descripcion</label> 
+        </td>
+    <td>
+     <input type="text" id="cajadescripcion">   
+    </td>    
+</tr>
+
+<tr>
+        <td>
+        <label>Precio</label> 
+        </td>
+    <td>
+     <input type="text" id="cajaprecio">   
+    </td>    
+</tr>
+<tr>
+        <td>
+        <label>Porcentaje</label> 
+        </td>
+    <td>
+     <input type="text" id="cajaporcentaje">   
+    </td>    
+</tr>
+
+<tr>
+        <td>
+        <label>Estado</label> 
+        </td>
+    <td>
+     <input type="text">   
+    </td>    
+</tr>
+
+<tr>
+        <td>
+        <label>Imagen</label> 
+        </td>
+     
+</tr>
+
+<tr>
+        <td>
+        <label>Cantidad</label> 
+        </td>
+    <td>
+     <input type="text">   
+    </td>    
+</tr>
+<tr>
+
+
+</tr>
+
+<tr><button [disabled]="loading" class="btn btn-primary">Guardar Producto</button></tr>
+
+</table>
+
+
+ 
+
+</div>
+
+</form>
+
+
+
